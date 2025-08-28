@@ -1,0 +1,9 @@
+{
+  "manifest_version": 3,
+  "name": "Search Command Bar",
+  "version": "0.0.0",
+
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  }
+}
