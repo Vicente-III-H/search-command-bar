@@ -1,6 +1,6 @@
 function CommandBar() {
     return (
-        <div>
+        <div id="command-bar">
             <input type="text"></input>
         </div>
     )

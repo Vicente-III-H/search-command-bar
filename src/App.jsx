@@ -6,7 +6,6 @@ function App() {
     <>
       <div></div>
       <CommandBar />
-      <div></div>
     </>
   )
 }
