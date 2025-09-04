@@ -14,7 +14,20 @@ const NATIVE_CMDS = {
 
 const parseInput = (input) => input.trim().split(" ").filter((string) => string !== "");
 
-const executeNativeCommand = () => { return false }
+const executeNativeCommand = (parsedInput, commands, setOutput) => {
+    const cmd = parsedInput[0];
+    let args = {
+        "parsedInput": parsedInput,
+        "commands": commands,
+        "setOutput": setOutput
+    };
+    switch (cmd) {
+        case "sclear":
+            args["clearStorage"] = browserAPI.clearStorage;
+            break;
+    }
+    NATIVE_CMDS[cmd](args);
+}
 
 const executeSearchCommand = (parsedInput, cmdParams) => {
     const args = parsedInput.length - 1;
@@ -27,10 +40,15 @@ const executeSearchCommand = (parsedInput, cmdParams) => {
     browserAPI.changeTabURL(urlString);
 }
 
-const executeCommand = (input, commands) => {
+const executeCommand = (input, commands, setOutput) => {
     const parsedInput = parseInput(input);
     if (parsedInput.length === 0) { return }
     const cmd = parsedInput[0];
+
+    if (Object.hasOwn(commands["native-commands"], cmd)) {
+        executeNativeCommand(parsedInput, commands, setOutput);
+        return;
+    }
     
     if (Object.hasOwn(commands["search-commands"], cmd)) {
         const cmdParams = commands["search-commands"][cmd];
