@@ -1,5 +1,4 @@
 import * as browserAPI from "./chrome";
-
 import searchList from "./commands/search-list";
 
 const DEFAULT_SEARCH_CMDS = {
