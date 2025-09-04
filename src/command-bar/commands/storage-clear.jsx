@@ -1,0 +1,1 @@
+export default storageClear = (commands, setOutput, { clearStorage }) => { clearStorage() }

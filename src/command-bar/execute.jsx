@@ -1,5 +1,6 @@
 import * as browserAPI from "./chrome";
 import searchList from "./commands/search-list";
+import storageClear from "./commands/storage-clear";
 
 const DEFAULT_SEARCH_CMDS = {
     "g": ["https://www.google.com/search?q="],
@@ -8,6 +9,7 @@ const DEFAULT_SEARCH_CMDS = {
 
 const NATIVE_CMDS = {
     "sl": searchList,
+    "sclear": storageClear,
 }
 
 const parseInput = (input) => input.trim().split(" ").filter((string) => string !== "");
