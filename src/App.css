@@ -14,3 +14,7 @@
 #command-bar {
     display: flex;
 }
+
+#disabled {
+    background-color: red;
+}

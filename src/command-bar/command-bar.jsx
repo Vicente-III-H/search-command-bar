@@ -4,22 +4,28 @@ import { executeCommand, getCommands } from "./execute";
 function CommandBar({ setOutput }) {
     const [cmdInput, setCmdInput] = useState("");
     const [commands, setCommands] = useState({});
+    const [enabled, setEnabled] = useState(false);
 
     useEffect(() => {
         (async () => {
             setCommands(await getCommands());
+            setEnabled(true);
         })();
     }, [])
 
     const onKeyDown = (event) => {
         const key = event.key;
-        if (key === "Enter") { executeCommand(cmdInput, commands, setOutput) }
+        if (enabled && key === "Enter") {
+            executeCommand(cmdInput, commands, setOutput, setEnabled);
+            setCmdInput("");
+        }
     }
 
     return (
         <div id="command-bar">
             <input
                 type="text"
+                className={enabled ? "" : "disabled"}
                 value={cmdInput}
                 onChange={(event) => setCmdInput(event.target.value)}
                 onKeyDown={onKeyDown}

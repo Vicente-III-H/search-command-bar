@@ -14,12 +14,13 @@ const NATIVE_CMDS = {
 
 const parseInput = (input) => input.trim().split(" ").filter((string) => string !== "");
 
-const executeNativeCommand = (parsedInput, commands, setOutput) => {
+const executeNativeCommand = (parsedInput, commands, setOutput, setEnabled) => {
     const cmd = parsedInput[0];
     let args = {
         "parsedInput": parsedInput,
         "commands": commands,
-        "setOutput": setOutput
+        "setOutput": setOutput,
+        "setEnabled": setEnabled,
     };
     switch (cmd) {
         case "sclear":
@@ -29,24 +30,31 @@ const executeNativeCommand = (parsedInput, commands, setOutput) => {
     NATIVE_CMDS[cmd](args);
 }
 
-const executeSearchCommand = (parsedInput, cmdParams) => {
-    const args = parsedInput.length - 1;
-    const params = cmdParams.length;
-    let urlString = "";
-    for (let i = 0; i < params; i++) {
-        urlString += cmdParams[i] + parsedInput[i + 1];
-    }
-    urlString += " " + parsedInput.slice(params + 1).join(" ");
-    browserAPI.changeTabURL(urlString);
+const executeSearchCommand = (parsedInput, cmdParams, setEnabled) => {
+    (async () => {
+        setEnabled(false);
+        const args = parsedInput.length - 1;
+        const params = cmdParams.length;
+        let urlString = "";
+        for (let i = 0; i < params; i++) {
+            urlString += cmdParams[i] + parsedInput[i + 1];
+        }
+        urlString += " " + parsedInput.slice(params + 1).join(" ");
+        try {
+            await browserAPI.changeTabURL(urlString);
+        } finally {
+            setEnabled(true);
+        }
+    })();
 }
 
-const executeCommand = (input, commands, setOutput) => {
+const executeCommand = (input, commands, setOutput, setEnabled) => {
     const parsedInput = parseInput(input);
     if (parsedInput.length === 0) { return }
     const cmd = parsedInput[0];
 
     if (Object.hasOwn(commands["native-commands"], cmd)) {
-        executeNativeCommand(parsedInput, commands, setOutput);
+        executeNativeCommand(parsedInput, commands, setOutput, setEnabled);
         return;
     }
     
@@ -55,7 +63,7 @@ const executeCommand = (input, commands, setOutput) => {
         const args = parsedInput.length - 1;
         const params = cmdParams.length;
         if (args < params) { return }
-        executeSearchCommand(parsedInput, cmdParams);
+        executeSearchCommand(parsedInput, cmdParams, setEnabled);
         return;
     }
 }
