@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { executeCommand, getCommands } from "./commands";
 
-function CommandBar() {
+function CommandBar({ setOutput }) {
     const [cmdInput, setCmdInput] = useState("");
     const [commands, setCommands] = useState({});
 
