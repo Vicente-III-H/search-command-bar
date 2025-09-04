@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { executeCommand, getCommands } from "./execute";
+import { executeCommand, getSearchCommands } from "./execute";
 
 function CommandBar({ setOutput }) {
     const [cmdInput, setCmdInput] = useState("");
-    const [commands, setCommands] = useState({});
+    const [searchCommands, setSearchCommands] = useState({});
     const [enabled, setEnabled] = useState(false);
 
     useEffect(() => {
         (async () => {
-            setCommands(await getCommands());
+            setSearchCommands(await getSearchCommands());
             setEnabled(true);
         })();
     }, [])
@@ -16,7 +16,7 @@ function CommandBar({ setOutput }) {
     const onKeyDown = (event) => {
         const key = event.key;
         if (enabled && key === "Enter") {
-            executeCommand(cmdInput, commands, setOutput, setEnabled);
+            executeCommand(cmdInput, searchCommands, setOutput, setEnabled);
             setCmdInput("");
         }
     }
