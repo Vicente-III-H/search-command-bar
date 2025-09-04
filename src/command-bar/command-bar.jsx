@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import { getStorage } from "./chrome";
-
-const parseInput = (input) => input.trim().split(" ").filter((string) => string !== "");
+import { getSearchCmds } from "./chrome";
+import executeCommand from "./commands";
 
 function CommandBar() {
     const [cmdInput, setCmdInput] = useState("");
     const [commands, setCommands] = useState({});
 
     useEffect(() => {
-        getStorage("commands");
+        (async () => {
+            const searchCmds = await getSearchCmds();
+            setCommands({...searchCmds});
+        })();
     }, [])
 
     return (
@@ -18,7 +20,7 @@ function CommandBar() {
                 value={cmdInput}
                 onChange={(event) => setCmdInput(event.target.value)}
             />
-            <button>Search</button>
+            <button onClick={() => {executeCommand(cmdInput, commands)}}>Search</button>
         </div>
     )
 }

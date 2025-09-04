@@ -1,3 +1,8 @@
+const DEFAULT_SEARCH_CMDS = {
+    "g": ["https://www.google.com/search?q="],
+    "y": ["https://youtube.com/results?search_query="],
+}
+
 const isEmptyObject = (object) => {
     for (const prop in object) {
         if (Object.hasOwn(object, prop)) { return false }
@@ -5,13 +10,39 @@ const isEmptyObject = (object) => {
     return true;
 }
 
-const getStorage = async (key) => {
+const getSearchCmds = async () => {
     try {
-        const storage = await chrome.storage.local.get(key);
-        console.log(isEmptyObject(storage));
+        let cmds = await chrome.storage.local.get("search-commands");
+        if (isEmptyObject(cmds)) {
+            await chrome.storage.local.set({"search-commands": DEFAULT_SEARCH_CMDS});
+            cmds = DEFAULT_SEARCH_CMDS;
+        }
+        return cmds;
     } catch (error) {
-        console.log(error);
+        console.log("Failed to retrieve stored commands: ", error);
+        return DEFAULT_SEARCH_CMDS;
     }
 }
 
-export { getStorage }
+const clearStorage = async () => {
+    try {
+        await chrome.storage.local.clear();
+    } catch (error) {
+        console.log("Failed to clear storage: ", error);
+    }
+}
+
+const changeTabURL = async (urlString) => {
+    const link = encodeURI(urlString);
+    try {
+        await chrome.tabs.update(undefined, {"url": link});
+    } catch (error) {
+        console.log("Failed to open URL: ", error);
+    }
+}
+
+export {
+    getSearchCmds,
+    changeTabURL,
+    clearStorage,
+}
