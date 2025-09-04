@@ -2,7 +2,7 @@ import * as browserAPI from "./chrome";
 import searchAdd from "./commands/search-add";
 import searchList from "./commands/search-list";
 import storageClear from "./commands/storage-clear";
-import fetch from "./commands/fetch";
+import { fetchCommand, fetch } from "./commands/fetch";
 
 const DEFAULT_SEARCH_CMDS = {
     "g": {alias: "Google", urlPieces: ["https://www.google.com/search?q="]},
@@ -10,9 +10,9 @@ const DEFAULT_SEARCH_CMDS = {
 }
 
 const NATIVE_CMDS = {
+    "f": fetchCommand,
     "sl": searchList,
     "sadd": searchAdd,
-    "f": fetch,
     "sclear": storageClear,
 }
 
@@ -22,17 +22,21 @@ const executeNativeCommand = (parsedInput, helpers) => {
     helpers.setCmdInput("");
 
     const cmd = parsedInput[0];
-    let args = {"parsedInput": parsedInput, ...helpers};
+    let args = {
+        "parsedInput": parsedInput,
+        "getSearchCommands": getSearchCommands,
+        ...helpers
+    };
 
     switch (cmd) {
+        case "sl":
+            args["fetch"] = fetch;
+            break;
         case "sclear":
             args["clearStorage"] = browserAPI.clearStorage;
             break;
         case "sadd":
             args["addSearchCmd"] = browserAPI.addSearchCmd;
-            break;
-        case "f":
-            args["getSearchCommands"] = getSearchCommands;
             break;
     }
     NATIVE_CMDS[cmd](args);

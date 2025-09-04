@@ -1,4 +1,4 @@
-const fetch = ({ setSearchCommands, getSearchCommands, setOutput, setEnabled }) => {
+const fetchCommand = ({ setSearchCommands, getSearchCommands, setOutput, setEnabled }) => {
     (async () => {
         setEnabled(false);
         try {
@@ -12,4 +12,10 @@ const fetch = ({ setSearchCommands, getSearchCommands, setOutput, setEnabled }) 
     })();
 }
 
-export default fetch
+const fetch = async (getSearchCommands, setSearchCommands) => {
+    const currCmds = await getSearchCommands();
+    setSearchCommands(currCmds);
+    return currCmds;
+}
+
+export { fetchCommand, fetch }
