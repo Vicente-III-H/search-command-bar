@@ -37,6 +37,7 @@ const executeNativeCommand = (parsedInput, helpers) => {
             break;
         case "sadd":
             args["addSearchCmd"] = browserAPI.addSearchCmd;
+            args["fetch"] = fetch;
             break;
     }
     NATIVE_CMDS[cmd](args);

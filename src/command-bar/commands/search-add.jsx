@@ -1,4 +1,4 @@
-const searchAdd = ({ parsedInput, addSearchCmd, setOutput, setEnabled }) => {
+const searchAdd = ({ parsedInput, addSearchCmd, fetch, getSearchCommands, setSearchCommands, setOutput, setEnabled }) => {
     const args = parsedInput.length - 1;
     if (args < 3) { return }
     
@@ -8,7 +8,9 @@ const searchAdd = ({ parsedInput, addSearchCmd, setOutput, setEnabled }) => {
 
         try {
             await addSearchCmd(parsedInput[1], parsedInput[2], parsedInput.slice(3));
-            setOutput(currOutput => currOutput + "\n" + "Search command " + parsedInput[1] + " (\"" + parsedInput[2] + "\") has been added");
+            setOutput(currOutput => currOutput + "\n" + "Search command " + parsedInput[1] + " (\"" + parsedInput[2] + "\") has been added to storage");
+            await fetch(getSearchCommands, setSearchCommands);
+            setOutput(currOutput => currOutput + "\n" + "Search command " + parsedInput[1] + " (\"" + parsedInput[2] + "\") can be used");
         } catch {
             setOutput(currOutput => currOutput + "\n" + "Search command " + parsedInput[1] + " could not be added to storage");
         } finally {
