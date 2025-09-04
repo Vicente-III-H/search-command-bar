@@ -1,4 +1,4 @@
-import { getSearchCmds, changeTabURL } from "./chrome";
+import * as browserAPI from "./chrome";
 
 import searchList from "./commands/search-list";
 
@@ -23,7 +23,7 @@ const executeSearchCommand = (parsedInput, cmdParams) => {
         urlString += cmdParams[i] + parsedInput[i + 1];
     }
     urlString += " " + parsedInput.slice(params + 1).join(" ");
-    changeTabURL(urlString);
+    browserAPI.changeTabURL(urlString);
 }
 
 const executeCommand = (input, commands) => {
@@ -42,7 +42,7 @@ const executeCommand = (input, commands) => {
 }
 
 const getCommands = async () => {
-    const searchCmds = await getSearchCmds(DEFAULT_SEARCH_CMDS);
+    const searchCmds = await browserAPI.getSearchCmds(DEFAULT_SEARCH_CMDS);
     return {...searchCmds, "native-commands": NATIVE_CMDS};
 }
 
