@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { getSearchCmds } from "./chrome";
-import executeCommand from "./commands";
+import { executeCommand, getCommands } from "./commands";
 
 function CommandBar() {
     const [cmdInput, setCmdInput] = useState("");
@@ -8,10 +7,14 @@ function CommandBar() {
 
     useEffect(() => {
         (async () => {
-            const searchCmds = await getSearchCmds();
-            setCommands({...searchCmds});
+            setCommands(await getCommands());
         })();
     }, [])
+
+    const onKeyDown = (event) => {
+        const key = event.key;
+        if (key === "Enter") { executeCommand(cmdInput, commands) }
+    }
 
     return (
         <div id="command-bar">
@@ -19,8 +22,8 @@ function CommandBar() {
                 type="text"
                 value={cmdInput}
                 onChange={(event) => setCmdInput(event.target.value)}
+                onKeyDown={onKeyDown}
             />
-            <button onClick={() => {executeCommand(cmdInput, commands)}}>Search</button>
         </div>
     )
 }

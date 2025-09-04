@@ -1,8 +1,3 @@
-const DEFAULT_SEARCH_CMDS = {
-    "g": ["https://www.google.com/search?q="],
-    "y": ["https://youtube.com/results?search_query="],
-}
-
 const isEmptyObject = (object) => {
     for (const prop in object) {
         if (Object.hasOwn(object, prop)) { return false }
@@ -10,17 +5,17 @@ const isEmptyObject = (object) => {
     return true;
 }
 
-const getSearchCmds = async () => {
+const getSearchCmds = async (defaultSearchCmds) => {
     try {
         let cmds = await chrome.storage.local.get("search-commands");
         if (isEmptyObject(cmds)) {
-            await chrome.storage.local.set({"search-commands": DEFAULT_SEARCH_CMDS});
-            cmds = DEFAULT_SEARCH_CMDS;
+            await chrome.storage.local.set({"search-commands": defaultSearchCmds});
+            cmds = {"search-commands": defaultSearchCmds};
         }
         return cmds;
     } catch (error) {
         console.log("Failed to retrieve stored commands: ", error);
-        return DEFAULT_SEARCH_CMDS;
+        return {"search-commands": defaultSearchCmds};
     }
 }
 
