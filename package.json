@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "gca": "git commit -am"
+    "gca": "git add . && git commit -m"
   },
   "dependencies": {
     "react": "^19.1.1",
