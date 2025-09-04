@@ -7,8 +7,9 @@ const storageClear = ({ setOutput, setEnabled, clearStorage }) => {
             setOutput(currOutput => currOutput + "\n" + "Storage cleared");
         } catch {
             setOutput(currOutput => currOutput + "\n" + "Could not clear storage");
+        } finally {
+            setEnabled(true);
         }
-        setEnabled(true);
     })();
 };
 

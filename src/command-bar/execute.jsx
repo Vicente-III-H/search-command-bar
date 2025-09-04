@@ -1,4 +1,5 @@
 import * as browserAPI from "./chrome";
+import searchAdd from "./commands/search-add";
 import searchList from "./commands/search-list";
 import storageClear from "./commands/storage-clear";
 
@@ -9,12 +10,14 @@ const DEFAULT_SEARCH_CMDS = {
 
 const NATIVE_CMDS = {
     "sl": searchList,
+    "sadd": searchAdd,
     "sclear": storageClear,
 }
 
 const parseInput = (input) => input.trim().split(" ").filter((string) => string !== "");
 
 const executeNativeCommand = (parsedInput, helpers) => {
+    helpers.setOutput("");
     const cmd = parsedInput[0];
     let args = {
         "parsedInput": parsedInput,
@@ -26,11 +29,14 @@ const executeNativeCommand = (parsedInput, helpers) => {
         case "sclear":
             args["clearStorage"] = browserAPI.clearStorage;
             break;
+        case "sadd":
+            args["addSearchCmd"] = browserAPI.addSearchCmd;
+            break;
     }
     NATIVE_CMDS[cmd](args);
 }
 
-const executeSearchCommand = (parsedInput, { searchCommands, setEnabled }) => {
+const executeSearchCommand = (parsedInput, { searchCommands, setOutput, setEnabled }) => {
     (async () => {
         setEnabled(false);
         
@@ -46,17 +52,19 @@ const executeSearchCommand = (parsedInput, { searchCommands, setEnabled }) => {
         try {
             await browserAPI.changeTabURL(urlString);
         } finally {
+            setOutput("");
             setEnabled(true);
         }
     })();
 }
 
-const executeCommand = (input, searchCommands, setOutput, setEnabled) => {
+const executeCommand = (input, searchCommands, setSearchCommands, setOutput, setEnabled) => {
     const parsedInput = parseInput(input);
     if (parsedInput.length === 0) { return }
     const cmd = parsedInput[0];
     const helpers = {
         "searchCommands": searchCommands,
+        "setSearchCommands": setSearchCommands,
         "setOutput": setOutput,
         "setEnabled": setEnabled,
     }

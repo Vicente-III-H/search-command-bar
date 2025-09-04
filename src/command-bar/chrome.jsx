@@ -19,6 +19,22 @@ const getSearchCmds = async (defaultSearchCmds) => {
     }
 }
 
+const addSearchCmd = async (newCmd, alias, urlPieces) => {
+    const cmdProps = {
+        "alias": alias,
+        "urlPieces": urlPieces
+    };
+
+    try {
+        const currCmds = await chrome.storage.local.get("search-commands");
+        let newCurrCmds = currCmds["search-commands"];
+        newCurrCmds[newCmd] = cmdProps;
+        await chrome.storage.local.set({"search-commands": newCurrCmds});
+    } catch {
+
+    }
+}
+
 const clearStorage = async () => {
     try {
         await chrome.storage.local.clear();
@@ -38,6 +54,7 @@ const changeTabURL = async (urlString) => {
 
 export {
     getSearchCmds,
+    addSearchCmd,
     changeTabURL,
     clearStorage,
 }
