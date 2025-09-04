@@ -2,6 +2,7 @@ import * as browserAPI from "./chrome";
 import searchAdd from "./commands/search-add";
 import searchList from "./commands/search-list";
 import storageClear from "./commands/storage-clear";
+import fetch from "./commands/fetch";
 
 const DEFAULT_SEARCH_CMDS = {
     "g": {alias: "Google", urlPieces: ["https://www.google.com/search?q="]},
@@ -11,20 +12,18 @@ const DEFAULT_SEARCH_CMDS = {
 const NATIVE_CMDS = {
     "sl": searchList,
     "sadd": searchAdd,
+    "f": fetch,
     "sclear": storageClear,
 }
 
 const parseInput = (input) => input.trim().split(" ").filter((string) => string !== "");
 
 const executeNativeCommand = (parsedInput, helpers) => {
-    helpers.setOutput("");
+    helpers.setCmdInput("");
+
     const cmd = parsedInput[0];
-    let args = {
-        "parsedInput": parsedInput,
-        "searchCommands": helpers.searchCommands,
-        "setOutput": helpers.setOutput,
-        "setEnabled": helpers.setEnabled,
-    };
+    let args = {"parsedInput": parsedInput, ...helpers};
+
     switch (cmd) {
         case "sclear":
             args["clearStorage"] = browserAPI.clearStorage;
@@ -32,11 +31,14 @@ const executeNativeCommand = (parsedInput, helpers) => {
         case "sadd":
             args["addSearchCmd"] = browserAPI.addSearchCmd;
             break;
+        case "f":
+            args["getSearchCommands"] = getSearchCommands;
+            break;
     }
     NATIVE_CMDS[cmd](args);
 }
 
-const executeSearchCommand = (parsedInput, { searchCommands, setOutput, setEnabled }) => {
+const executeSearchCommand = (parsedInput, { searchCommands, setEnabled }) => {
     (async () => {
         setEnabled(false);
         
@@ -52,19 +54,19 @@ const executeSearchCommand = (parsedInput, { searchCommands, setOutput, setEnabl
         try {
             await browserAPI.changeTabURL(urlString);
         } finally {
-            setOutput("");
             setEnabled(true);
         }
     })();
 }
 
-const executeCommand = (input, searchCommands, setSearchCommands, setOutput, setEnabled) => {
+const executeCommand = (input, setCmdInput, searchCommands, setSearchCommands, setOutput, setEnabled) => {
     const parsedInput = parseInput(input);
     if (parsedInput.length === 0) { return }
     const cmd = parsedInput[0];
     const helpers = {
         "searchCommands": searchCommands,
         "setSearchCommands": setSearchCommands,
+        "setCmdInput": setCmdInput,
         "setOutput": setOutput,
         "setEnabled": setEnabled,
     }

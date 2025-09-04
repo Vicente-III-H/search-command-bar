@@ -16,7 +16,7 @@ function CommandBar({ setOutput }) {
     const onKeyDown = (event) => {
         const key = event.key;
         if (enabled && key === "Enter") {
-            executeCommand(cmdInput, searchCommands, setSearchCommands, setOutput, setEnabled);
+            executeCommand(cmdInput, setCmdInput, searchCommands, setSearchCommands, setOutput, setEnabled);
         }
     }
 
