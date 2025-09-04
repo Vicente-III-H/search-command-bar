@@ -1,12 +1,14 @@
 import { getSearchCmds, changeTabURL } from "./chrome";
 
+import searchList from "./commands/search-list";
+
 const DEFAULT_SEARCH_CMDS = {
     "g": ["https://www.google.com/search?q="],
     "y": ["https://youtube.com/results?search_query="],
 }
 
 const NATIVE_CMDS = {
-
+    "sl": searchList,
 }
 
 const parseInput = (input) => input.trim().split(" ").filter((string) => string !== "");

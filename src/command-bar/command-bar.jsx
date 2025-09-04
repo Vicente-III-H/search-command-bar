@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { executeCommand, getCommands } from "./commands";
+import { executeCommand, getCommands } from "./execute";
 
 function CommandBar({ setOutput }) {
     const [cmdInput, setCmdInput] = useState("");
