@@ -1,1 +1,3 @@
-export default storageClear = ({ clearStorage }) => { clearStorage() }
+const storageClear = ({ clearStorage }) => { clearStorage() };
+
+export default storageClear

@@ -3,8 +3,8 @@ import searchList from "./commands/search-list";
 import storageClear from "./commands/storage-clear";
 
 const DEFAULT_SEARCH_CMDS = {
-    "g": ["https://www.google.com/search?q="],
-    "y": ["https://youtube.com/results?search_query="],
+    "g": {alias: "Google", urlPieces: ["https://www.google.com/search?q="]},
+    "y": {alias: "YouTube", urlPieces: ["https://youtube.com/results?search_query="]},
 }
 
 const NATIVE_CMDS = {

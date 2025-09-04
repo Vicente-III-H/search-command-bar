@@ -1,4 +1,4 @@
-export default searchList = ({ commands, setOutput }) => {
+const searchList = ({ commands, setOutput }) => {
     const searchCommands = commands["search-commands"];
 
     let output = "";
@@ -8,3 +8,5 @@ export default searchList = ({ commands, setOutput }) => {
 
     setOutput(output.slice(0, -1));
 }
+
+export default searchList
