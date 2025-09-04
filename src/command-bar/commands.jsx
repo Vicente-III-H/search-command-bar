@@ -29,13 +29,13 @@ const executeCommand = (input, commands) => {
     if (parsedInput.length === 0) { return }
     const cmd = parsedInput[0];
     
-    if (executeNativeCommand()) { return }
-    
     if (Object.hasOwn(commands["search-commands"], cmd)) {
+        const cmdParams = commands["search-commands"][cmd];
         const args = parsedInput.length - 1;
-        const params = commands["search-commands"][cmd].length;
+        const params = cmdParams.length;
         if (args < params) { return }
-        if (executeSearchCommand(parsedInput, commands["search-commands"][cmd])) { return }
+        executeSearchCommand(parsedInput, cmdParams);
+        return;
     }
 }
 
