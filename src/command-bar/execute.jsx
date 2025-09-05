@@ -50,11 +50,14 @@ const executeSearchCommand = (parsedInput, { searchCommands, setEnabled }) => {
         const cmdParams = searchCommands[parsedInput[0]]["urlPieces"];
         const args = parsedInput.length - 1;
         const params = cmdParams.length;
+
+        const min = Math.min(params, args);
         let urlString = "";
-        for (let i = 0; i < params; i++) {
+        for (let i = 0; i < min; i++) {
             urlString += cmdParams[i] + parsedInput[i + 1];
         }
-        urlString += (args > params) ? " " + parsedInput.slice(params + 1).join(" ") : "";
+        if (args > params) { urlString += " " + parsedInput.slice(params + 1).join(" ") }
+        if (params > args) { urlString += cmdParams.slice(args).join("") }
 
         try {
             await browserAPI.changeTabURL(urlString);
@@ -82,11 +85,8 @@ const executeCommand = (input, setCmdInput, searchCommands, setSearchCommands, s
     }
     
     if (Object.hasOwn(searchCommands, cmd)) {
-        const cmdParams = searchCommands[cmd]["urlPieces"];
         const args = parsedInput.length - 1;
-        const params = cmdParams.length;
-        if (args < params) { return }
-        executeSearchCommand(parsedInput, helpers);
+        if (args >= 1) { executeSearchCommand(parsedInput, helpers) }
         return;
     }
 }
