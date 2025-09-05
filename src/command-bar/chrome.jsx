@@ -50,7 +50,7 @@ const clearStorage = async () => {
     try {
         await chrome.storage.local.clear();
     } catch (error) {
-        console.log("Failed to clear storage: ", error);
+        throw new Error(error);
     }
 }
 
@@ -59,7 +59,7 @@ const changeTabURL = async (urlString) => {
     try {
         await chrome.tabs.update(undefined, {"url": link});
     } catch (error) {
-        console.log("Failed to open URL: ", error);
+        throw new Error(error);
     }
 }
 
