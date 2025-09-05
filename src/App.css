@@ -1,18 +1,29 @@
 #root {
     flex: 1;
+    display: flex;
+    margin: 0;
+}
+
+#command-bar-container {
+    flex: 1;
 
     display: flex;
     flex-direction: column;
 
-    margin: 24px; /* temporary */
-}
-
-#root :first-child {
-    flex: 1;
+    padding: 24px; /* temporary */
 }
 
 #command-bar {
     display: flex;
+}
+
+#command-bar input {
+    flex: 1;
+}
+
+#output {
+    flex: 1;
+    white-space: pre-line;
 }
 
 #disabled {

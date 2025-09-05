@@ -1,6 +1,6 @@
 function Output({ output }) {
     return (
-        <div style={{whiteSpace: "pre-line"}}>{output}</div>
+        <div id="output">{output}</div>
     )
 }
 
