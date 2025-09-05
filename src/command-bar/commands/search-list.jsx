@@ -1,6 +1,6 @@
-const searchList = ({ fetch, getSearchCommands, setSearchCommands, setOutput }) => {
+const searchList = ({ fetchHelper, getSearchCommands, setSearchCommands, setOutput }) => {
     (async () => {
-        const searchCommands = await fetch(getSearchCommands, setSearchCommands);
+        const searchCommands = await fetchHelper(getSearchCommands, setSearchCommands);
         let output = "";
         for (const cmd in searchCommands) {
             output += cmd + " - " + searchCommands[cmd].alias + " [ " + searchCommands[cmd]["urlPieces"].join(" ") + " ]" + "\n"

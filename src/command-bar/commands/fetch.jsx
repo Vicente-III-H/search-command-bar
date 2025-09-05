@@ -12,10 +12,10 @@ const fetchCommand = ({ setSearchCommands, getSearchCommands, setOutput, setEnab
     })();
 }
 
-const fetch = async (getSearchCommands, setSearchCommands) => {
+const fetchHelper = async (getSearchCommands, setSearchCommands) => {
     const currCmds = await getSearchCommands();
     setSearchCommands(currCmds);
     return currCmds;
 }
 
-export { fetchCommand, fetch }
+export { fetchCommand, fetchHelper }

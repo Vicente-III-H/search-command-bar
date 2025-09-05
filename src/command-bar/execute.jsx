@@ -2,7 +2,7 @@ import * as browserAPI from "./chrome";
 import searchAdd from "./commands/search-add";
 import searchList from "./commands/search-list";
 import storageClear from "./commands/storage-clear";
-import { fetchCommand, fetch } from "./commands/fetch";
+import { fetchCommand, fetchHelper } from "./commands/fetch";
 import clearOutput from "./commands/clear-output";
 
 const DEFAULT_SEARCH_CMDS = {
@@ -32,14 +32,14 @@ const executeNativeCommand = (parsedInput, helpers) => {
 
     switch (cmd) {
         case "sl":
-            args["fetch"] = fetch;
+            args["fetchHelper"] = fetchHelper;
             break;
         case "sclear":
             args["clearStorage"] = browserAPI.clearStorage;
             break;
         case "sadd":
             args["addSearchCmd"] = browserAPI.addSearchCmd;
-            args["fetch"] = fetch;
+            args["fetchHelper"] = fetchHelper;
             break;
     }
     NATIVE_CMDS[cmd](args);
