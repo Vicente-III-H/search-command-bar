@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { executeCommand, getSearchCommands } from "./execute";
 
-function CommandBar({ setOutput }) {
+function CommandBar({ setOutput, commandBarRef }) {
     const [cmdInput, setCmdInput] = useState("");
     const [searchCommands, setSearchCommands] = useState({});
     const [enabled, setEnabled] = useState(false);
@@ -28,6 +28,7 @@ function CommandBar({ setOutput }) {
                 value={cmdInput}
                 onChange={(event) => setCmdInput(event.target.value)}
                 onKeyDown={onKeyDown}
+                ref={commandBarRef}
             />
         </div>
     )
