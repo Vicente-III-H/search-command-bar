@@ -4,7 +4,7 @@ import { useState, useRef } from 'react'
 import './App.css'
 
 function App() {
-  const [output, setOutput] = useState("");
+  const [output, setOutput] = useState(`Enter "help" for instructions`);
 
   const commandBarRef = useRef(null);
   const focusCommandBar = () => { commandBarRef.current.focus() };

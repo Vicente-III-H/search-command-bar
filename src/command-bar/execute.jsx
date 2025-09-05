@@ -5,6 +5,7 @@ import storageClear from "./commands/storage-clear";
 import { fetchCommand, fetchHelper } from "./commands/fetch";
 import clearOutput from "./commands/clear-output";
 import searchDelete from "./commands/search-delete";
+import help from "./commands/help";
 
 const DEFAULT_SEARCH_CMDS = {
     "g": {alias: "Google", urlPieces: ["https://www.google.com/search?q="]},
@@ -18,6 +19,7 @@ const NATIVE_CMDS = {
     "sdel": searchDelete,
     "sreset": storageClear,
     "clear": clearOutput,
+    "help": help,
 }
 
 const parseInput = (input) => input.trim().split(" ").filter((string) => string !== "");
