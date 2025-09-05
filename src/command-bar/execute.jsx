@@ -4,6 +4,7 @@ import searchList from "./commands/search-list";
 import storageClear from "./commands/storage-clear";
 import { fetchCommand, fetchHelper } from "./commands/fetch";
 import clearOutput from "./commands/clear-output";
+import searchDelete from "./commands/search-delete";
 
 const DEFAULT_SEARCH_CMDS = {
     "g": {alias: "Google", urlPieces: ["https://www.google.com/search?q="]},
@@ -14,6 +15,7 @@ const NATIVE_CMDS = {
     "f": fetchCommand,
     "sl": searchList,
     "sadd": searchAdd,
+    "sdel": searchDelete,
     "sreset": storageClear,
     "clear": clearOutput,
 }
@@ -27,19 +29,19 @@ const executeNativeCommand = (parsedInput, helpers) => {
     let args = {
         "parsedInput": parsedInput,
         "getSearchCommands": getSearchCommands,
+        "fetchHelper": fetchHelper,
         ...helpers
     };
 
     switch (cmd) {
-        case "sl":
-            args["fetchHelper"] = fetchHelper;
-            break;
         case "sclear":
             args["clearStorage"] = browserAPI.clearStorage;
             break;
         case "sadd":
             args["addSearchCmd"] = browserAPI.addSearchCmd;
-            args["fetchHelper"] = fetchHelper;
+            break;
+        case "sdel":
+            args["deleteSearchCmd"] = browserAPI.deleteSearchCmd;
             break;
     }
     NATIVE_CMDS[cmd](args);

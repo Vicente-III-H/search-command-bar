@@ -1,4 +1,4 @@
-const fetchCommand = ({ setSearchCommands, getSearchCommands, setOutput, setEnabled }) => {
+const fetchCommand = ({ getSearchCommands, setSearchCommands, setOutput, setEnabled }) => {
     (async () => {
         setEnabled(false);
         try {
