@@ -24,7 +24,7 @@
 #output {
     flex: 1;
     white-space: pre-line;
-}
+    border-radius: var(--border-radius);
 
 #disabled {
     background-color: red;
