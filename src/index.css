@@ -28,6 +28,19 @@ body {
   background-size: cover;
 }
 
+input {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  border-width: 0px;
+  padding: 0px;
+  margin: 0px;
+  background-color: transparent;
+  outline: none;
+}
 /*
 button {
   border-radius: 8px;
