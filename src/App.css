@@ -2,30 +2,56 @@
     flex: 1;
     display: flex;
     margin: 0;
+    max-height: 100vh;
 }
 
-#command-bar-container {
+.background {
+    --border-width: 1px;
+    --border-color: hsl(0, 0%, 40%);
+    --background-color: hsla(0, 0%, 10%, 0.8);
+    --border-radius: 12px;
+    --blur-radius: 8px;
+    
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--background-color);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+#container {
     flex: 1;
 
     display: flex;
     flex-direction: column;
+    gap: 12px;
 
     padding: 24px; /* temporary */
 }
 
 #command-bar {
+    --command-bar-font-size: var(--font-size);
+
     display: flex;
+    
+    font-size: var(--command-bar-font-size);
+    padding: 10px 12px;
 }
 
 #command-bar input {
     flex: 1;
 }
 
+.disabled {
+    
+}
+
 #output {
     flex: 1;
     white-space: pre-line;
-    border-radius: var(--border-radius);
+    overflow-y: auto;
+    font-size: var(--font-size);
 
-#disabled {
-    background-color: red;
+    padding: 24px; /* temporary */
+    padding-bottom: 0px;
 }

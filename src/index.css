@@ -1,18 +1,19 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: monospace;
   line-height: 1.5;
-  font-size: 16px;
+  font-size: var(--font-size);
   font-weight: 400;
 
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+  box-sizing: border-box;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --border-radius: 12px;
+  --font-size: 16px;
 }
 
 body {
@@ -23,6 +24,7 @@ body {
 
   min-width: 320px;
   min-height: 100vh;
+  overflow: hidden;
 
   background-image: url(./assets/autumn.jpg);
   background-position: center;
@@ -35,8 +37,7 @@ input {
   -moz-appearance: none;
   -webkit-appearance: none;
   color: inherit;
-  font-weight: inherit;
-  font-size: inherit;
+  font: inherit;
   border-width: 0px;
   padding: 0px;
   margin: 0px;

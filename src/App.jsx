@@ -10,7 +10,7 @@ function App() {
   const focusCommandBar = () => { commandBarRef.current.focus() };
 
   return (
-    <div id='command-bar-container' onClickCapture={focusCommandBar}>
+    <div id='container' onClickCapture={focusCommandBar}>
       <Output output={output} />
       <CommandBar setOutput={setOutput} commandBarRef={commandBarRef}/>
     </div>

@@ -1,6 +1,6 @@
 function Output({ output }) {
     return (
-        <div id="output">{output}</div>
+        <div id="output" className="background">{output}</div>
     )
 }
 

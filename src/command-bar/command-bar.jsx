@@ -21,7 +21,7 @@ function CommandBar({ setOutput, commandBarRef }) {
     }
 
     return (
-        <div id="command-bar">
+        <div id="command-bar" className="background">
             <input
                 type="text"
                 className={enabled ? "" : "disabled"}
