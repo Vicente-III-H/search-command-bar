@@ -1,6 +1,10 @@
 const searchAdd = ({ parsedInput, addSearchCmd, fetchHelper, getSearchCommands, setSearchCommands, setOutput, setEnabled }) => {
     const args = parsedInput.length - 1;
     if (args < 3) { return }
+    if (parsedInput[0].includes(" ")) {
+        setOutput("Failed to add command: command names cannot contain spaces");
+        return;
+    }
     
     (async () => {
         setEnabled(false);
