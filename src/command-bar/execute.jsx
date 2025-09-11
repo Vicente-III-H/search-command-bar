@@ -20,7 +20,39 @@ const NATIVE_CMDS = {
     "clear": clearOutput,
 }
 
-const parseInput = (input) => input.trim().split(" ").filter((string) => string !== "");
+const parseInput = (input) => {
+    const parsedInput = input.trim().split(" ").filter((string) => string !== "");
+
+    let res = [];
+    outer: for (let i = 0; i < parsedInput.length; i++) {
+        const arg = parsedInput[i];
+        const startChar = arg.charAt(0);
+        
+        if (startChar === '"' || startChar === "'") {
+            if (arg.endsWith(startChar)) {
+                res.push(arg.substring(1, arg.length - 1));
+                continue;
+            }
+            
+            for (let j = i + 1; j < parsedInput.length; j++) {
+                const arg2 = parsedInput[j];
+                const endChar = arg2.charAt(arg2.length - 1);
+                if (startChar === endChar) {
+                    let stringArg = "";
+                    for (let k = i; k <= j; k++) {
+                        stringArg += stringArg === "" ? parsedInput[k] : " " + parsedInput[k];
+                    }
+                    res.push(stringArg.substring(1, stringArg.length - 1));
+                    i = j;
+                    continue outer;
+                }
+            }
+        }
+        
+        res.push(arg);
+    }
+    return res;
+};
 
 const executeNativeCommand = (parsedInput, helpers) => {
     helpers.setCmdInput("");
