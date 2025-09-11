@@ -7,6 +7,23 @@ import clearOutput from "./commands/clear-output";
 import searchDelete from "./commands/search-delete";
 import help from "./commands/help";
 
+const INITIAL_OUTPUT = `--- SEARCHING WITH COMMANDS ---
+To search using the command bar, enter a search command followed by the search prompt into the command bar
+e.g. To search for square watermelons on google.com, enter "g square watermelons" into the command bar
+
+To see the list of available search commands, enter "sl" into the command bar
+
+--- ADDING SEARCH COMMANDS ---
+To add a custom search command, enter the command "sadd" followed by a command name, the name of the website, and its URL
+e.g. To add youtube.com as a search command, enter "sadd y YouTube https://youtube.com/results?search_query="
+
+To delete a search command, enter "sdel" followed by the name of the command into the command bar
+
+To reset the list of search commands to its defaults, enter "sreset" into the command bar
+
+--- HELP COMMAND ---
+Enter "help" into the command bar to see these instructions again`;
+
 const DEFAULT_SEARCH_CMDS = {
     "g": {alias: "Google", urlPieces: ["https://www.google.com/search?q="]},
     "y": {alias: "YouTube", urlPieces: ["https://youtube.com/results?search_query="]},
@@ -102,4 +119,4 @@ const getSearchCommands = async () => {
     return searchCmds["search-commands"];
 }
 
-export { executeCommand, getSearchCommands }
+export { executeCommand, getSearchCommands, INITIAL_OUTPUT }

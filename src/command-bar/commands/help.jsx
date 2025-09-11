@@ -1,25 +1,20 @@
 const help = ({ setOutput }) => {
-    const message = `--- SEARCH COMMAND LIST ---
-    To view available search commands, enter "sl" into the command bar
-    i.e. sl
-    Each line in the output lists properties of a search command. See "ADD SEARCH COMMAND" for properties explanation
-    i.e. "SEARCH_COMMAND - ALIAS [ URL_PIECES... ]"
-    
-    --- SEARCH COMMANDS ---
-    To use a search command, enter the search command then any subsequent arguments:
-    i.e. SEARCH_COMMAND ARGUMENTS...
-    SEARCH_COMMAND - Search command keyword
-    ARGUMENTS - Arguments that will be passed into search command URL
+    const message = `--- SEARCHING WITH COMMANDS ---
+    To search using the command bar, enter a search command followed by the search prompt into the command bar
+    e.g. To search for square watermelons on google.com, enter "g square watermelons" into the command bar
 
-    --- ADD SEARCH COMMAND ---
-    To create a search command, enter "sadd"
-    i.e. sadd SEARCH_COMMAND ALIAS URL_PIECES...
-    SEARCH_COMMAND - Keyword used to call search command
-    ALIAS - Alias name that appears in search command list
-    URL_PIECES - Pieces of the destination URL. Any arguments entered with the search command will be subsequently appended to a URL Piece, one after another
-    
-    --- CLEAR OUTPUT ---
-    To clear the terminal output, enter "clear"`;
+    To see the list of available search commands, enter "sl" into the command bar
+
+    --- ADDING SEARCH COMMANDS ---
+    To add a custom search command, enter the command "sadd" followed by a command name, the name of the website, and its URL
+    e.g. To add youtube.com as a search command, enter "sadd y YouTube https://youtube.com/results?search_query="
+
+    To delete a search command, enter "sdel" followed by the name of the command into the command bar
+
+    To reset the list of search commands to its defaults, enter "sreset" into the command bar
+
+    --- HELP COMMAND ---
+    Enter "help" into the command bar to see these instructions again`;
     setOutput(message);
 }
 
