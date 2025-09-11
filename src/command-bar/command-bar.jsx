@@ -24,11 +24,13 @@ function CommandBar({ setOutput, commandBarRef }) {
         <div id="command-bar" className="background">
             <input
                 type="text"
+                id="command-bar-input"
                 className={enabled ? "" : "disabled"}
                 value={cmdInput}
                 onChange={(event) => setCmdInput(event.target.value)}
                 onKeyDown={onKeyDown}
                 ref={commandBarRef}
+                placeholder="Enter commands here..."
             />
         </div>
     )
