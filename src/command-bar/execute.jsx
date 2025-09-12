@@ -6,6 +6,7 @@ import { fetchCommand, fetchHelper } from "./commands/fetch";
 import clearOutput from "./commands/clear-output";
 import searchDelete from "./commands/search-delete";
 import help from "./commands/help";
+import commandList from "./commands/command-list";
 
 const INITIAL_OUTPUT = `--- SEARCHING WITH COMMANDS ---
 To search using the command bar, enter a search command followed by the search prompt into the command bar
@@ -37,6 +38,7 @@ const NATIVE_CMDS = {
     "sreset": storageClear,
     "clear": clearOutput,
     "help": help,
+    "cl": commandList,
 }
 
 const parseInput = (input) => {
