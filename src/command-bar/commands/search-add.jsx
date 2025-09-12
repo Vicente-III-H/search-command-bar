@@ -15,6 +15,7 @@ const searchAdd = ({ parsedInput, addSearchCmd, fetchHelper, getSearchCommands, 
             setOutput(currOutput => currOutput + "\n" + "Search command " + parsedInput[1] + " (\"" + parsedInput[2] + "\") has been added to storage");
             await fetchHelper(getSearchCommands, setSearchCommands);
             setOutput(currOutput => currOutput + "\n" + "Search command " + parsedInput[1] + " (\"" + parsedInput[2] + "\") can be used");
+            setOutput(currOutput => currOutput + "\n\n" + `To view the list of search commands, enter "sl" into the command bar`);
         } catch {
             setOutput(currOutput => currOutput + "\n" + "Search command " + parsedInput[1] + " could not be added to storage");
         } finally {
