@@ -14,7 +14,8 @@ const help = ({ setOutput }) => {
     To reset the list of search commands to its defaults, enter "sreset" into the command bar
 
     --- HELP COMMAND ---
-    Enter "help" into the command bar to see these instructions again`;
+    Enter "help" into the command bar to see these instructions again
+    Enter "cl" into the command bar to see the list of regular commands`;
     setOutput(message);
 }
 
