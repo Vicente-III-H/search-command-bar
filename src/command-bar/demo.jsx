@@ -19,7 +19,7 @@ const getSearchCmds = async (defaultSearchCmds) => {
     try {
         let cmds = getCmdsFromLocalStorage("search-commands");
         if (isEmptyObject(cmds)) {
-            localStorage.setItem("search-commands", JSON.stringify({"search-commands": defaultSearchCmds}));
+            setCmdInLocalStorage("search-commands", {"search-commands": defaultSearchCmds});
             cmds = {"search-commands": defaultSearchCmds};
         }
         return cmds;
