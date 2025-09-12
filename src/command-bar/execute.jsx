@@ -1,4 +1,4 @@
-import * as browserAPI from "./demo";
+import * as browserAPI from "./chrome";
 import searchAdd from "./commands/search-add";
 import searchList from "./commands/search-list";
 import storageClear from "./commands/storage-clear";
