@@ -1,4 +1,4 @@
-import * as browserAPI from "./chrome";
+import * as browserAPI from "./demo";
 import searchAdd from "./commands/search-add";
 import searchList from "./commands/search-list";
 import storageClear from "./commands/storage-clear";
@@ -70,7 +70,7 @@ const executeNativeCommand = (parsedInput, helpers) => {
     };
 
     switch (cmd) {
-        case "sclear":
+        case "sreset":
             args["clearStorage"] = browserAPI.clearStorage;
             break;
         case "sadd":
