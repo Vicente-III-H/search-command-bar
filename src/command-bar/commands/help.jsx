@@ -10,7 +10,7 @@ e.g. To add youtube.com as a search command, enter "sadd y YouTube https://youtu
 
 To delete a search command, enter "sdel" followed by the name of the command into the command bar
 
-To reset the list of search commands to its defaults, enter "sreset" into the command bar
+To reset the list of search commands to the default values, enter "sreset" into the command bar
 
 --- HELP COMMAND ---
 Enter "help" into the command bar to see these instructions again
