@@ -53,6 +53,7 @@
     padding: var(--padding);
     padding-bottom: 18px; /* temporary */
     box-sizing: border-box;
+    max-width: calc(100vw - 2 * var(--container-padding));
     max-height: calc(100vh - 2 * var(--container-padding));
 }
 
