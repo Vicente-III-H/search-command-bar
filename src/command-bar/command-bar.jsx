@@ -21,11 +21,10 @@ function CommandBar({ setOutput, commandBarRef }) {
     }
 
     return (
-        <div id="command-bar" className="background">
+        <div id="command-bar" className="flexbox">
             <input
                 type="text"
-                id="command-bar-input"
-                className={enabled ? "" : "disabled"}
+                className={"flex" + (enabled ? "" : " disabled")}
                 value={cmdInput}
                 onChange={(event) => setCmdInput(event.target.value)}
                 onKeyDown={onKeyDown}
