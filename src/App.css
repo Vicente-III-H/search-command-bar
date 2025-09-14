@@ -67,8 +67,12 @@
 }
 
 #output {
-    white-space: pre-line;
     overflow-y: auto;
+    padding-bottom: var(--command-bar-top-padding);
+}
+
+#output div {
+    white-space: pre-line;
     font-size: var(--font-size);
     font-family: inherit;
 }

@@ -13,7 +13,9 @@ function App() {
     return (
         <div id='container' className='flex flexbox-col' onClickCapture={focusCommandBar}>
             <div id='terminal' className='background border flex flexbox-col'>
-                <div id='output' className='border-bottom flex'>{output}</div>
+                <div id='output' className='border-bottom flex flexbox-col'>
+                    <div className='flex'>{output}</div>
+                </div>
                 <CommandBar setOutput={setOutput} commandBarRef={commandBarRef}/>
             </div>
         </div>
