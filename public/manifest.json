@@ -1,7 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Search Command Bar",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "A terminal-inspired search bar to search on different websites",
 
   "permissions": [
     "storage"
