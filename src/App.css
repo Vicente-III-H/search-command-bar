@@ -5,6 +5,8 @@
     max-height: 100vh;
 }
 
+/* STYLING CLASSES */
+
 .flexbox {
     display: flex;
 }
@@ -40,18 +42,21 @@
     border-bottom: var(--border-width) solid var(--border-color);
 }
 
+/* CONTENT STYLING */
+
 #container {
     padding: var(--container-padding);
 }
 
 #terminal {
     --padding: 24px;
+    --padding-bottom: 18px;
     --command-bar-font-size: var(--font-size);
     --command-bar-top-padding: 14px;
 
     font-family: var(--font-family);
     padding: var(--padding);
-    padding-bottom: 18px; /* temporary */
+    padding-bottom: var(--padding-bottom);
     box-sizing: border-box;
     max-width: calc(100vw - 2 * var(--container-padding));
     max-height: calc(100vh - 2 * var(--container-padding));
@@ -66,10 +71,6 @@
 #command-bar::before{
     content: ">";
     padding-right: 0.7rem;
-}
-
-.disabled {
-    
 }
 
 #output {
