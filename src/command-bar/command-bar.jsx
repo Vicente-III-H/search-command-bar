@@ -29,7 +29,7 @@ function CommandBar({ setOutput, commandBarRef }) {
                 onChange={(event) => setCmdInput(event.target.value)}
                 onKeyDown={onKeyDown}
                 ref={commandBarRef}
-                placeholder="Enter commands here..."
+                placeholder="Enter commands here"
             />
         </div>
     )
