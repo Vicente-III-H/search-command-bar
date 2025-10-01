@@ -10,7 +10,7 @@ The Search Command Bar (SCB) Chrome extension takes advantage of URL parameters 
 Features of the Search Command Bar include:
 - Searching websites using terminal-esque commands
 - Adding custom search commands to search desired websites
-- Storing commands using the Chrome extension storage API (or localStorage for Demo website)
+- Storing commands using the Chrome extension storage API (or localStorage for [Demo website](https://iii-search-cmd-bar.netlify.app/))
 - Using quotation marks to pass in multiple space-separated arguments as a single argument
 - A CLI-inspired UI to display command outputs
 
