@@ -1,5 +1,6 @@
 # Search Command Bar
 The Search Command Bar is a CLI-inspired Chrome extension that makes searching on websites easier.
+
 ![Search Command Bar](./readme-assets/search-command-bar.png)
 
 ## Overview
