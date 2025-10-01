@@ -17,7 +17,7 @@ Features of the Search Command Bar include:
 ## Instructions
 ### Installation
 1. Clone this repository
-2. Inside the root directory of this repository, run `npm i`, then `npm build`
+2. Inside the root directory of this repository, run `npm i`, then `npm run build`
 3. In Chrome, open the `Manage Extensions` menu
 4. Turn on Developer Mode for extensions
 5. Click the `Load unpacked` button
