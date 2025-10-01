@@ -25,5 +25,6 @@ Features of the Search Command Bar include:
 
 ### Using the Search Command Bar
 1. Open a new tab in Chrome
-2. Click the command bar near the bottom or click anywhere on the page
-3. Read the initial message for quick help, or enter `help` into the command bar for further detail
+2. If prompted to change back the page, select `Keep it`
+3. Click the command bar near the bottom or click anywhere on the page
+4. Read the initial message for quick help, or enter `help` into the command bar for further details
